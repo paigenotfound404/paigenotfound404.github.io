@@ -1,2 +1,2 @@
 # kristenborgna
-Repo for Kristen Borgna' personal sites
+Repo for Kristen Borgna personal sites
