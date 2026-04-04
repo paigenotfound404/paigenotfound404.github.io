@@ -508,9 +508,7 @@
   </footer>
 
   <script>
-    // Paste your Apps Script Web app URL here after deploying RsvpSheetScript.gs
-    var RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
-  
+    var RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyesES5f-s2H_Gg2zf90_6hAEJgaKhRniiwT0E0FFNf78y1QEcSaOoCJEFAhCHsJsO7AQ/exec';
 
     document.getElementById('rsvpForm').addEventListener('submit', function (e) {
       e.preventDefault();
@@ -529,18 +527,32 @@
         dietary: formData.get('dietary') || ''
       };
 
-      if (!RSVP_SCRIPT_URL) {
+      var scriptUrl = RSVP_SCRIPT_URL && RSVP_SCRIPT_URL.indexOf('YOUR_DEPLOYMENT_ID') === -1
+        ? RSVP_SCRIPT_URL
+        : '';
+
+      if (!scriptUrl) {
         msgEl.textContent = 'Thank you. Your response has been received.';
         msgEl.className = 'rsvp-message success';
         form.reset();
         return;
       }
 
-      fetch(RSVP_SCRIPT_URL, {
+      // no-cors only allows "simple" requests; application/json is not allowed and the body was dropped.
+      // application/x-www-form-urlencoded works and maps to e.parameter in Apps Script.
+      var params = new URLSearchParams();
+      params.set('name', data.name);
+      params.set('email', data.email);
+      params.set('attending', data.attending);
+      params.set('adults', data.adults);
+      params.set('kids', data.kids);
+      params.set('dietary', data.dietary);
+
+      fetch(scriptUrl, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString()
       }).then(function () {
         msgEl.textContent = 'Thank you. Your response has been received.';
         msgEl.className = 'rsvp-message success';
