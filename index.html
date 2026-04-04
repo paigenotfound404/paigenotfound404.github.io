@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
   <title>Kristen & Josh — Wedding</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -150,7 +149,7 @@
 
     /* Event details */
     .event-details {
-      background: var(--charcoal);
+      background: var(--black);
     }
 
     .event-details .details-grid {
@@ -185,11 +184,22 @@
       text-align: center;
     }
 
-    /* RSVP */
-    .rsvp {
-      background: var(--black);
+    /* Full-width gray bands (RSVP, Registry) */
+    section.section-band {
+      max-width: none;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      background: var(--charcoal);
     }
 
+    section.section-band > .section-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    /* RSVP */
     .rsvp-form {
       max-width: 480px;
       margin: 2rem auto 0;
@@ -275,10 +285,6 @@
     .rsvp-message.error { color: #a66; }
 
     /* Registry */
-    .registry {
-      background: var(--charcoal);
-    }
-
     .registry-links {
       display: flex;
       flex-wrap: wrap;
@@ -352,86 +358,23 @@
       .nav-links a { font-size: 0.65rem; }
     }
 
-    /* Full-width slideshow */
-    .slideshow {
+    /* Full-width section photos */
+    .section-photo {
       width: 100%;
-      position: relative;
-      overflow: hidden;
       background: var(--charcoal);
     }
-    .slideshow-track {
-      display: flex;
-      transition: transform 0.6s ease-in-out;
-    }
-    .slideshow-slide {
-      flex: 0 0 100%;
+    .section-photo img {
       width: 100%;
-      aspect-ratio: 16 / 6;
-      max-height: 50vh;
-    }
-    .slideshow-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
       display: block;
+      aspect-ratio: 16 / 6;
+      max-height: 45vh;
+      object-fit: cover;
       filter: grayscale(100%);
     }
-    .slideshow-dots {
-      position: absolute;
-      bottom: 1.25rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 0.75rem;
-      z-index: 2;
-    }
-    .slideshow-dots button {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      border: 1px solid var(--ivory);
-      background: transparent;
-      padding: 0;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .slideshow-dots button:hover {
-      background: rgba(245, 240, 232, 0.3);
-    }
-    .slideshow-dots button.active {
-      background: var(--ivory);
-    }
-    .slideshow-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 2;
-      width: 3rem;
-      height: 3rem;
-      border: 1px solid rgba(245, 240, 232, 0.4);
-      background: rgba(13, 13, 13, 0.5);
-      color: var(--ivory);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .slideshow-arrow:hover {
-      background: rgba(13, 13, 13, 0.8);
-      border-color: var(--ivory);
-    }
-    .slideshow-arrow.prev {
-      left: 1rem;
-    }
-    .slideshow-arrow.next {
-      right: 1rem;
-    }
     @media (max-width: 600px) {
-      .slideshow-slide {
+      .section-photo img {
         aspect-ratio: 16 / 7;
-        max-height: 45vh;
+        max-height: 40vh;
       }
     }
   </style>
@@ -450,21 +393,8 @@
     <p class="date">October 3, 2026</p>
   </header>
 
-  <div class="slideshow" aria-label="Photo gallery">
-    <button type="button" class="slideshow-arrow prev" id="slideshowPrev" aria-label="Previous slide">&#10094;</button>
-    <button type="button" class="slideshow-arrow next" id="slideshowNext" aria-label="Next slide">&#10095;</button>
-    <div class="slideshow-track" id="slideshowTrack">
-      <div class="slideshow-slide">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80" alt="">
-      </div>
-      <div class="slideshow-slide">
-        <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1920&q=80" alt="">
-      </div>
-      <div class="slideshow-slide">
-        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1920&q=80" alt="">
-      </div>
-    </div>
-    <div class="slideshow-dots" id="slideshowDots" role="tablist"></div>
+  <div class="section-photo" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1920&q=80" alt="">
   </div>
 
   <section id="story" class="story">
@@ -477,6 +407,10 @@
       We met on a porch in late summer, with fireflies and the hum of cicadas. What began in that golden hour has led us here—to a day we’ll share with the people who’ve walked beside us. We hope you’ll join us.
     </p>
   </section>
+
+  <div class="section-photo" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80" alt="">
+  </div>
 
   <section id="details" class="event-details">
     <h2>Event Details</h2>
@@ -497,63 +431,75 @@
     </div>
   </section>
 
-  <section id="rsvp" class="rsvp">
-    <h2>RSVP</h2>
-    <div class="divider"><span>✦</span></div>
-    <p>Please respond by September 1, 2026.</p>
-    <form class="rsvp-form" id="rsvpForm">
-      <div class="form-row">
-        <div>
-          <label for="name">Name(s)</label>
-          <input type="text" id="name" name="name" placeholder="Your name or names" required>
+  <div class="section-photo" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1920&q=80" alt="">
+  </div>
+
+  <section id="rsvp" class="rsvp section-band">
+    <div class="section-inner">
+      <h2>RSVP</h2>
+      <div class="divider"><span>✦</span></div>
+      <p>Please respond by August 1, 2026.</p>
+      <form class="rsvp-form" id="rsvpForm">
+        <div class="form-row">
+          <div>
+            <label for="name">Name(s)</label>
+            <input type="text" id="name" name="name" placeholder="Your name or names" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          </div>
         </div>
         <div>
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" required>
-        </div>
-      </div>
-      <div>
-        <label for="attending">Will you attend?</label>
-        <select id="attending" name="attending" required>
-          <option value="">Please select</option>
-          <option value="yes">Joyfully accept</option>
-          <option value="no">Regretfully decline</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <div>
-          <label for="adults">Number of adults</label>
-          <select id="adults" name="adults">
-            <option value="1">1</option>
-            <option value="2" selected>2</option>
+          <label for="attending">Will you attend?</label>
+          <select id="attending" name="attending" required>
+            <option value="">Please select</option>
+            <option value="yes">Joyfully accept</option>
+            <option value="no">Regretfully decline</option>
           </select>
         </div>
-        <div>
-          <label for="kids">Number of children</label>
-          <select id="kids" name="kids">
-            <option value="0" selected>0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
+        <div class="form-row">
+          <div>
+            <label for="adults">Number of adults</label>
+            <select id="adults" name="adults">
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+            </select>
+          </div>
+          <div>
+            <label for="kids">Number of children</label>
+            <select id="kids" name="kids">
+              <option value="0" selected>0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
         </div>
-      </div>
-      <div>
-        <label for="dietary">Dietary notes (optional)</label>
-        <textarea id="dietary" name="dietary" rows="2" placeholder="Allergies or dietary restrictions"></textarea>
-      </div>
-      <button type="submit">Send response</button>
-    </form>
-    <p class="rsvp-message" id="rsvpMessage" aria-live="polite"></p>
+        <div>
+          <label for="dietary">Dietary notes (optional)</label>
+          <textarea id="dietary" name="dietary" rows="2" placeholder="Allergies or dietary restrictions"></textarea>
+        </div>
+        <button type="submit">Send response</button>
+      </form>
+      <p class="rsvp-message" id="rsvpMessage" aria-live="polite"></p>
+    </div>
   </section>
 
-  <section id="registry" class="registry">
-    <h2>Registry</h2>
-    <div class="divider"><span>✦</span></div>
-    <p>Your presence is the greatest gift. For those who wish to give, we are registered at the following. Monetary gifts will go toward house upgrades and upcoming vacations.</p>
-    <div class="registry-links">
-      <a href="https://www.amazon.com/wedding/guest-view/1QDH99T5PNKRG" target="_blank" rel="noopener">Amazon</a>
-      <a href="https://venmo.com/" target="_blank" rel="noopener">Venmo</a>
+  <div class="section-photo" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1920&q=80" alt="">
+  </div>
+
+  <section id="registry" class="registry section-band">
+    <div class="section-inner">
+      <h2>Registry</h2>
+      <div class="divider"><span>✦</span></div>
+      <p>Your presence is the greatest gift. For those who wish to give, we are registered at the following. Monetary gifts will go toward house upgrades and upcoming vacations.</p>
+      <div class="registry-links">
+        <a href="https://www.amazon.com/wedding/guest-view/1QDH99T5PNKRG" target="_blank" rel="noopener">Amazon</a>
+        <a href="https://venmo.com/" target="_blank" rel="noopener">Venmo</a>
+      </div>
     </div>
   </section>
 
@@ -562,62 +508,6 @@
   </footer>
 
   <script>
-    (function () {
-      var track = document.getElementById('slideshowTrack');
-      var dotsContainer = document.getElementById('slideshowDots');
-      var slides = track ? track.querySelectorAll('.slideshow-slide') : [];
-      var total = slides.length;
-      var current = 0;
-      var interval;
-
-      function goTo(index) {
-        current = (index + total) % total;
-        if (track) track.style.transform = 'translateX(-' + current * 100 + '%)';
-        var dotBtns = dotsContainer ? dotsContainer.querySelectorAll('button') : [];
-        dotBtns.forEach(function (btn, i) {
-          btn.classList.toggle('active', i === current);
-          btn.setAttribute('aria-selected', i === current);
-        });
-      }
-
-      function next() {
-        goTo(current + 1);
-      }
-
-      function prev() {
-        goTo(current - 1);
-      }
-
-      var prevBtn = document.getElementById('slideshowPrev');
-      var nextBtn = document.getElementById('slideshowNext');
-      if (prevBtn) prevBtn.addEventListener('click', function () { prev(); resetInterval(); });
-      if (nextBtn) nextBtn.addEventListener('click', function () { next(); resetInterval(); });
-
-      if (total > 0 && dotsContainer) {
-        for (var i = 0; i < total; i++) {
-          var btn = document.createElement('button');
-          btn.type = 'button';
-          btn.role = 'tab';
-          btn.setAttribute('aria-label', 'Slide ' + (i + 1));
-          btn.setAttribute('aria-selected', i === 0);
-          if (i === 0) btn.classList.add('active');
-          (function (idx) {
-            btn.addEventListener('click', function () {
-              goTo(idx);
-              resetInterval();
-            });
-          })(i);
-          dotsContainer.appendChild(btn);
-        }
-        interval = setInterval(next, 5000);
-      }
-
-      function resetInterval() {
-        if (interval) clearInterval(interval);
-        interval = setInterval(next, 5000);
-      }
-    })();
-
     // Paste your Apps Script Web app URL here after deploying RsvpSheetScript.gs
     var RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
   
