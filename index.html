@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kristen & Josh — Union</title>
+  <title>Kristen & Josh — Raleigh</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://script.google.com/macros/s/AKfycbyesES5f-s2H_Gg2zf90_6hAEJgaKhRniiwT0E0FFNf78y1QEcSaOoCJEFAhCHsJsO7AQ/exec" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,600;1,400&family=Red+Hat+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
       --black: #0d0d0d;
@@ -417,7 +417,7 @@
     <div class="divider"><span>✦</span></div>
     <div class="details-grid">
       <div class="detail-card">
-        <h3>Ceremony & Reception</h3>
+        <h3>Dinner Celebration</h3>
         <p>Saturday, October 3, 2026<br>5:00 PM – 10:00 PM</p>
       </div>
       <div class="detail-card">
@@ -495,16 +495,17 @@
     <div class="section-inner">
       <h2>Registry</h2>
       <div class="divider"><span>✦</span></div>
-      <p>Your presence is the greatest gift. For those who wish to give, we are registered at the following. Monetary gifts will go toward house upgrades and upcoming vacations.</p>
+      <p>Your presence is the greatest gift. For those who wish to give, we are registered on Amazon. Monetary gifts will go toward home upgrades and upcoming vacations.</p>
       <div class="registry-links">
-        <a href="https://www.amazon.com/wedding/guest-view/1QDH99T5PNKRG" target="_blank" rel="noopener">Amazon</a>
-        <a href="https://venmo.com/" target="_blank" rel="noopener">Venmo</a>
+        <a href="https://www.amazon.com/wedding/guest-view/1QDH99T5PNKRG" rel="noopener noreferrer">Amazon</a>
+        <a href="https://venmo.com/u/Kristen-Borgna" rel="noopener noreferrer">Venmo</a>
       </div>
     </div>
   </section>
 
   <footer>
     <p>Kristen & Josh — October 2026</p>
+    <p>This website was vibe coded with Cursor and human reviewed by Kristen</p>
   </footer>
 
   <script>
@@ -527,6 +528,7 @@
         dietary: formData.get('dietary') || ''
       };
 
+      // Skip POST only if URL is missing or still the placeholder (not deployed).
       var scriptUrl = RSVP_SCRIPT_URL && RSVP_SCRIPT_URL.indexOf('YOUR_DEPLOYMENT_ID') === -1
         ? RSVP_SCRIPT_URL
         : '';
