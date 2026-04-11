@@ -129,7 +129,7 @@
     }
 
     .thanks {
-      padding-top: 2rem;
+      padding-top: 3rem;
       padding-bottom: 3rem;
     }
 
@@ -197,23 +197,42 @@
       opacity: 0.8;
     }
 
-    /* Full-width section photos */
-    .section-photo {
+    /* Full-width images between content sections */
+    .section-divider {
       width: 100%;
       background: var(--charcoal);
     }
-    .section-photo img {
+    .section-divider img {
       width: 100%;
       display: block;
-      aspect-ratio: 16 / 6;
-      max-height: 45vh;
+      aspect-ratio: 21 / 5;
+      max-height: 32vh;
       object-fit: cover;
+      object-position: center;
       filter: grayscale(100%);
     }
+    .section-divider--split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(245, 240, 232, 0.12);
+    }
+    .section-divider--split img {
+      aspect-ratio: 16 / 5;
+      max-height: 28vh;
+      min-height: 140px;
+    }
     @media (max-width: 600px) {
-      .section-photo img {
-        aspect-ratio: 16 / 7;
-        max-height: 40vh;
+      .section-divider img {
+        aspect-ratio: 16 / 6;
+        max-height: 28vh;
+      }
+      .section-divider--split {
+        grid-template-columns: 1fr;
+      }
+      .section-divider--split img {
+        max-height: 24vh;
+        min-height: 120px;
       }
     }
   </style>
@@ -222,27 +241,20 @@
   <header class="hero">
     <h1>Kristen + Josh</h1>
     <div class="divider"><span>✦</span></div>
-    <p class="date">October 3, 2026</p>
+    <p class="date">October 2026</p>
   </header>
+
+  <div class="section-divider" role="presentation">
+    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1920&q=80" alt="">
+  </div>
 
   <section class="thanks" aria-label="Thank you">
     <p class="lead">Thank you for visiting our wedding site. It means the world that you shared in this experience with us.</p>
   </section>
 
-  <div class="section-photo" aria-hidden="true">
-    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1920&q=80" alt="">
-  </div>
-
-  <div class="section-photo" aria-hidden="true">
+  <div class="section-divider section-divider--split" role="presentation">
     <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80" alt="">
-  </div>
-
-  <div class="section-photo" aria-hidden="true">
     <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1920&q=80" alt="">
-  </div>
-
-  <div class="section-photo" aria-hidden="true">
-    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1920&q=80" alt="">
   </div>
 
   <section id="registry" class="registry section-band">
@@ -256,6 +268,10 @@
       </div>
     </div>
   </section>
+
+  <div class="section-divider" role="presentation">
+    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1920&q=80" alt="">
+  </div>
 
   <footer>
     <p>Kristen & Josh — October 2026</p>
