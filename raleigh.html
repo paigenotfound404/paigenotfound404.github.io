@@ -510,7 +510,7 @@
   </footer>
 
   <script>
-    var RSVP_SCRIPT_URL = 'hhttps://script.google.com/macros/s/AKfycbxAl3NwzcEwaxUDl38GnOR8f4x8uzFRFST3eAAsP9r3S4oBbzcuqYrJQUeSC8mJnrnxnQ/exec';
+    var RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAl3NwzcEwaxUDl38GnOR8f4x8uzFRFST3eAAsP9r3S4oBbzcuqYrJQUeSC8mJnrnxnQ/exec';
 
     document.getElementById('attending').addEventListener('change', function () {
       if (this.value === 'no') {
@@ -542,7 +542,7 @@
       }
 
       // Skip POST only if URL is missing or still the placeholder (not deployed).
-      var scriptUrl = RSVP_SCRIPT_URL && RSVP_SCRIPT_URL.indexOf('https://script.google.com/macros/s/AKfycbxAl3NwzcEwaxUDl38GnOR8f4x8uzFRFST3eAAsP9r3S4oBbzcuqYrJQUeSC8mJnrnxnQ/exec') === -1
+      var scriptUrl = RSVP_SCRIPT_URL && RSVP_SCRIPT_URL.indexOf('YOUR_DEPLOYMENT_ID') === -1
         ? RSVP_SCRIPT_URL
         : '';
 
