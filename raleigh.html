@@ -463,6 +463,7 @@
           <div>
             <label for="adults">Number of adults</label>
             <select id="adults" name="adults">
+              <option value="0">0</option>
               <option value="1">1</option>
               <option value="2" selected>2</option>
             </select>
@@ -509,7 +510,14 @@
   </footer>
 
   <script>
-    var RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyesES5f-s2H_Gg2zf90_6hAEJgaKhRniiwT0E0FFNf78y1QEcSaOoCJEFAhCHsJsO7AQ/exec';
+    var RSVP_SCRIPT_URL = 'hhttps://script.google.com/macros/s/AKfycbxAl3NwzcEwaxUDl38GnOR8f4x8uzFRFST3eAAsP9r3S4oBbzcuqYrJQUeSC8mJnrnxnQ/exec';
+
+    document.getElementById('attending').addEventListener('change', function () {
+      if (this.value === 'no') {
+        document.getElementById('adults').value = '0';
+        document.getElementById('kids').value = '0';
+      }
+    });
 
     document.getElementById('rsvpForm').addEventListener('submit', function (e) {
       e.preventDefault();
@@ -528,8 +536,13 @@
         dietary: formData.get('dietary') || ''
       };
 
+      if (data.attending === 'no') {
+        data.adults = '0';
+        data.kids = '0';
+      }
+
       // Skip POST only if URL is missing or still the placeholder (not deployed).
-      var scriptUrl = RSVP_SCRIPT_URL && RSVP_SCRIPT_URL.indexOf('YOUR_DEPLOYMENT_ID') === -1
+      var scriptUrl = RSVP_SCRIPT_URL && RSVP_SCRIPT_URL.indexOf('https://script.google.com/macros/s/AKfycbxAl3NwzcEwaxUDl38GnOR8f4x8uzFRFST3eAAsP9r3S4oBbzcuqYrJQUeSC8mJnrnxnQ/exec') === -1
         ? RSVP_SCRIPT_URL
         : '';
 
