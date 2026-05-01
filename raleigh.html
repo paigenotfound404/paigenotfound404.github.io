@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kristen & Josh — Raleigh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,600;1,400&family=Red+Hat+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0d0d0d;
+      --charcoal: #1a1a1a;
+      --ivory: #f5f0e8;
+      --bone: #e8e0d4;
+      --white: #fafaf8;
+      --accent: #8c8c8c;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Red Hat Text', sans-serif;
+      background: var(--black);
+      color: var(--ivory);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Ornamental divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 3rem auto;
+      max-width: 280px;
+    }
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--bone), transparent);
+      opacity: 0.6;
+    }
+    .divider span {
+      font-family: 'Red Hat Display', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
+      color: var(--accent);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% 20%, rgba(245, 240, 232, 0.03) 0%, transparent 50%),
+        var(--black);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L30 60M0 30L60 30' stroke='%23f5f0e8' stroke-opacity='0.03' stroke-width='0.5'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-family: 'Red Hat Display', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero .subtitle {
+      font-family: 'Red Hat Display', sans-serif;
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-style: italic;
+      letter-spacing: 0.3em;
+      color: var(--bone);
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    .hero .date {
+      font-size: clamp(1.15rem, 3.5vw, 1.6rem);
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* Sections */
+    section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      position: relative;
+    }
+
+    section h2 {
+      font-family: 'Red Hat Display', sans-serif;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    section p {
+      text-align: center;
+      color: var(--bone);
+      font-size: 1rem;
+      max-width: 540px;
+      margin: 0 auto 1rem;
+    }
+
+    /* Story */
+    .story blockquote {
+      font-family: 'Red Hat Display', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      font-style: italic;
+      text-align: center;
+      color: var(--ivory);
+      margin: 2rem 0;
+      padding: 0 1rem;
+    }
+
+    /* Event details */
+    .event-details {
+      background: var(--black);
+    }
+
+    .event-details .details-grid {
+      display: grid;
+      gap: 2rem;
+      margin-top: 2rem;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .event-details .detail-card {
+      padding: 1.5rem;
+      border: 1px solid rgba(245, 240, 232, 0.1);
+      text-align: center;
+    }
+
+    .event-details .detail-card h3 {
+      font-family: 'Red Hat Display', sans-serif;
+      font-size: 1.25rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      color: var(--ivory);
+      text-align: center;
+    }
+
+    .event-details .detail-card p {
+      margin: 0 auto;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    /* Full-width gray bands (RSVP, Registry) */
+    section.section-band {
+      max-width: none;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      background: var(--charcoal);
+    }
+
+    section.section-band > .section-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    /* RSVP */
+    .rsvp-form {
+      max-width: 480px;
+      margin: 2rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .rsvp-form label {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .rsvp-form input,
+    .rsvp-form select,
+    .rsvp-form textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--charcoal);
+      border: 1px solid rgba(245, 240, 232, 0.15);
+      color: var(--ivory);
+      font-family: 'Red Hat Text', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .rsvp-form input::placeholder,
+    .rsvp-form textarea::placeholder {
+      color: var(--accent);
+      opacity: 0.6;
+    }
+
+    .rsvp-form input:focus,
+    .rsvp-form select:focus,
+    .rsvp-form textarea:focus {
+      outline: none;
+      border-color: var(--bone);
+    }
+
+    .rsvp-form .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media (max-width: 500px) {
+      .rsvp-form .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .rsvp-form button {
+      margin-top: 0.5rem;
+      padding: 1rem 2rem;
+      background: transparent;
+      border: 1px solid var(--ivory);
+      color: var(--ivory);
+      font-family: 'Red Hat Text', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .rsvp-form button:hover {
+      background: var(--ivory);
+      color: var(--black);
+    }
+
+    .rsvp-message {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      min-height: 1.5rem;
+    }
+
+    .rsvp-message.success { color: var(--bone); }
+    .rsvp-message.error { color: #a66; }
+
+    /* Registry */
+    .registry-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .registry-links a {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border: 1px solid rgba(245, 240, 232, 0.3);
+      color: var(--ivory);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .registry-links a:hover {
+      background: var(--ivory);
+      color: var(--black);
+      border-color: var(--ivory);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(245, 240, 232, 0.08);
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      opacity: 0.8;
+    }
+
+    /* Nav (optional minimal anchor links) */
+    .nav-links {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      gap: 1.5rem;
+      z-index: 100;
+    }
+
+    .nav-links a {
+      color: var(--ivory);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        top: 1rem;
+        right: 1rem;
+        gap: 1rem;
+      }
+      .nav-links a { font-size: 0.65rem; }
+    }
+
+    /* Photo reels: full-width white strip, polaroid cards only */
+    .photo-reel {
+      width: 100%;
+      background: #fff;
+    }
+    .photo-reel__track {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(0.5rem, 2vw, 1rem);
+      width: 100%;
+      margin: 0;
+      background: #fff;
+      padding: clamp(0.75rem, 2.5vw, 1.25rem) clamp(0.5rem, 3vw, 1.25rem) clamp(0.85rem, 2.5vw, 1.35rem);
+      box-sizing: border-box;
+    }
+    .photo-reel__polaroid {
+      background: #fff;
+      padding: 0.45rem 0.45rem 1.5rem;
+      box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.08),
+        0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+    .photo-reel__polaroid img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 4 / 5;
+      max-height: min(32vh, 400px);
+      object-fit: cover;
+      object-position: center 18%;
+    }
+    @media (max-width: 1024px) {
+      .photo-reel__track {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .photo-reel__track {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-links" aria-label="Page sections">
+    <a href="#story">Story</a>
+    <a href="#details">Details</a>
+    <a href="#rsvp">RSVP</a>
+    <a href="#registry">Registry</a>
+  </nav>
+
+  <header class="hero">
+    <h1>Kristen & Josh</h1>
+    <div class="divider"><span>✦</span></div>
+    <p class="date">October 3, 2026</p>
+  </header>
+
+  <div class="photo-reel" aria-hidden="true">
+    <div class="photo-reel__track">
+      <div class="photo-reel__polaroid"><img src="images/0C16CA0C-91C5-4F51-8C80-BAA9C207589C.jpeg" alt=""></div>
+      <div class="photo-reel__polaroid"><img src="images/11B1AED9-9425-4983-A09F-4CD78DC62824_1_105_c.jpeg" alt=""></div>
+      <div class="photo-reel__polaroid"><img src="images/11EE3A61-B15B-4F2C-A677-080F3CB97D50.jpeg" alt=""></div>
+      <div class="photo-reel__polaroid"><img src="images/6749F031-FE5D-400E-A67E-9C3517AC9382.jpg" alt=""></div>
+    </div>
+  </div>
+
+  <section id="story" class="story">
+    <h2>Our Story</h2>
+    <div class="divider"><span>✦</span></div>
+    <blockquote>
+      How we met isn’t that special, but what happened next is why we are together forever. Josh and Kristen compliment each other, lift each other up and support each other beyond dimensions of comprehension.
+    </blockquote>
+    <p>
+      We invite you to celebrate our union with a night full of speeches, social fun, food, drinks and loved ones. It’s been a long time coming.
+    </p>
+  </section>
+
+  <div class="photo-reel" aria-hidden="true">
+    <div class="photo-reel__track">
+      <div class="photo-reel__polaroid"><img src="images/75A7B9DA-0847-41B2-A34A-8C6C22BF63D6.jpeg" alt=""></div>
+      <div class="photo-reel__polaroid"><img src="images/B00B6999-C8B7-4637-89E3-6D2CFF581D5C.jpeg" alt=""></div>
+      <div class="photo-reel__polaroid"><img src="images/B04ECFAD-1C9F-4989-B955-DEE0F23FC71A.jpeg" alt=""></div>
+      <div class="photo-reel__polaroid"><img src="images/B559B84A-5A7E-4398-A184-FD7D01D085E2.jpeg" alt=""></div>
+    </div>
+  </div>
+
+  <section id="details" class="event-details">
+    <h2>Event Details</h2>
+    <div class="divider"><span>✦</span></div>
+    <div class="details-grid">
+      <div class="detail-card">
+        <h3>Dinner Celebration</h3>
+        <p>Saturday, October 3, 2026<br>5:00 PM – 10:00 PM</p>
+      </div>
+      <div class="detail-card">
+        <h3>Venue</h3>
+        <p>Vidrio<br>500 Glenwood Ave #100<br>Raleigh, NC 27603<br>Street and deck parking available</p>
+      </div>
+      <div class="detail-card">
+        <h3>Attire</h3>
+        <p>Wear something nice.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="photo-reel" aria-hidden="true">
+    <div class="photo-reel__track">
+      <div class="photo-reel__polaroid"><img src="images/BA179556-8E0E-4F26-8F49-629FE1AF10B9.jpeg" alt=""></div>
+      <div class="photo-reel__polaroid"><img src="images/BF0C9FF3-E853-4C87-AD69-4B813AAAC46F.jpg" alt=""></div>
+      <div class="photo-reel__polaroid"><img src="images/BFB966CB-0A2C-458A-B945-FDE04FDDC4BC.jpg" alt=""></div>
+      <div class="photo-reel__polaroid"><img src="images/D4803611-C62C-4851-A2D4-FFC0F204659A_1_105_c.jpeg" alt=""></div>
+    </div>
+  </div>
+
+  <section id="rsvp" class="rsvp section-band">
+    <div class="section-inner">
+      <h2>RSVP</h2>
+      <div class="divider"><span>✦</span></div>
+      <p>Please respond by August 1, 2026.</p>
+      <form class="rsvp-form" id="rsvpForm">
+        <div class="form-row">
+          <div>
+            <label for="name">Name(s)</label>
+            <input type="text" id="name" name="name" placeholder="Your name or names" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          </div>
+        </div>
+        <div>
+          <label for="attending">Will you attend?</label>
+          <select id="attending" name="attending" required>
+            <option value="">Please select</option>
+            <option value="yes">Joyfully accept</option>
+            <option value="no">Regretfully decline</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="adults">Number of adults</label>
+            <select id="adults" name="adults">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+            </select>
+          </div>
+          <div>
+            <label for="kids">Number of children</label>
+            <select id="kids" name="kids">
+              <option value="0" selected>0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="dietary">Dietary notes (optional)</label>
+          <textarea id="dietary" name="dietary" rows="2" placeholder="Allergies or dietary restrictions"></textarea>
+        </div>
+        <button type="submit">Send response</button>
+      </form>
+      <p class="rsvp-message" id="rsvpMessage" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section id="registry" class="registry section-band">
+    <div class="section-inner">
+      <h2>Registry</h2>
+      <div class="divider"><span>✦</span></div>
+      <p>Your presence is the greatest gift. For those who wish to give, we are registered on Amazon. Monetary gifts will go toward home upgrades and upcoming vacations.</p>
+      <div class="registry-links">
+        <a href="https://www.amazon.com/wedding/guest-view/1QDH99T5PNKRG" rel="noopener noreferrer">Amazon</a>
+        <a href="https://venmo.com/u/Kristen-Borgna" rel="noopener noreferrer">Venmo</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Kristen & Josh — October 2026</p>
+    <p>This website was vibe coded with Cursor and human reviewed by Kristen</p>
+  </footer>
+
+  <script>
+    var RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAl3NwzcEwaxUDl38GnOR8f4x8uzFRFST3eAAsP9r3S4oBbzcuqYrJQUeSC8mJnrnxnQ/exec';
+
+    document.getElementById('attending').addEventListener('change', function () {
+      if (this.value === 'no') {
+        document.getElementById('adults').value = '0';
+        document.getElementById('kids').value = '0';
+      }
+    });
+
+    document.getElementById('rsvpForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var msgEl = document.getElementById('rsvpMessage');
+      msgEl.textContent = '';
+      msgEl.className = 'rsvp-message';
+
+      var form = this;
+      var formData = new FormData(form);
+      var data = {
+        name: formData.get('name') || '',
+        attending: formData.get('attending') || '',
+        email: formData.get('email') || '',
+        adults: formData.get('adults') || '',
+        kids: formData.get('kids') || '',
+        dietary: formData.get('dietary') || ''
+      };
+
+      if (data.attending === 'no') {
+        data.adults = '0';
+        data.kids = '0';
+      }
+
+      // Skip POST only if URL is missing or still the placeholder (not deployed).
+      var scriptUrl = RSVP_SCRIPT_URL && RSVP_SCRIPT_URL.indexOf('YOUR_DEPLOYMENT_ID') === -1
+        ? RSVP_SCRIPT_URL
+        : '';
+
+      if (!scriptUrl) {
+        msgEl.textContent = 'Thank you. Your response has been received.';
+        msgEl.className = 'rsvp-message success';
+        form.reset();
+        return;
+      }
+
+      // no-cors only allows "simple" requests; application/json is not allowed and the body was dropped.
+      // application/x-www-form-urlencoded works and maps to e.parameter in Apps Script.
+      var params = new URLSearchParams();
+      params.set('name', data.name);
+      params.set('email', data.email);
+      params.set('attending', data.attending);
+      params.set('adults', data.adults);
+      params.set('kids', data.kids);
+      params.set('dietary', data.dietary);
+
+      fetch(scriptUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString()
+      }).then(function () {
+        msgEl.textContent = 'Thank you. Your response has been received.';
+        msgEl.className = 'rsvp-message success';
+        form.reset();
+      }).catch(function () {
+        msgEl.textContent = 'Thank you. Your response has been received.';
+        msgEl.className = 'rsvp-message success';
+        form.reset();
+      });
+    });
+  </script>
+</body>
+</html>
