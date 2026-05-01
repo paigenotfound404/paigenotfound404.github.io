@@ -364,9 +364,10 @@
       background: #fff;
     }
     .photo-reel__track {
+      --reel-gap: clamp(0.5rem, 2vw, 1rem);
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: clamp(0.5rem, 2vw, 1rem);
+      gap: var(--reel-gap);
       width: 100%;
       margin: 0;
       background: #fff;
@@ -388,14 +389,38 @@
       object-fit: cover;
       object-position: center 18%;
     }
+    /* Tablet/mobile: one horizontal row; 3 or 2 images visible per viewport (scroll for rest) */
     @media (max-width: 1024px) {
       .photo-reel__track {
-        grid-template-columns: repeat(3, 1fr);
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: clamp(0.5rem, 3vw, 1.25rem);
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 0, 0, 0.18) transparent;
+        padding: clamp(0.75rem, 2.5vw, 1rem) clamp(0.75rem, 4vw, 1.25rem) 1rem;
+      }
+      .photo-reel__track::-webkit-scrollbar {
+        height: 5px;
+      }
+      .photo-reel__track::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.18);
+        border-radius: 3px;
+      }
+      .photo-reel__polaroid {
+        flex: 0 0 calc((100% - 2 * var(--reel-gap)) / 3);
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+      }
+      .photo-reel__polaroid img {
+        max-height: none;
       }
     }
     @media (max-width: 600px) {
-      .photo-reel__track {
-        grid-template-columns: repeat(2, 1fr);
+      .photo-reel__polaroid {
+        flex: 0 0 calc((100% - 1 * var(--reel-gap)) / 2);
       }
     }
   </style>
