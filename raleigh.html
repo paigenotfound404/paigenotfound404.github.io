@@ -284,6 +284,11 @@
     .rsvp-message.success { color: var(--bone); }
     .rsvp-message.error { color: #a66; }
 
+    .rsvp-complete {
+      font-size: 1.1rem;
+      padding: 2rem 0;
+    }
+
     /* Registry */
     .registry-links {
       display: flex;
@@ -500,7 +505,6 @@
     <div class="section-inner">
       <h2>RSVP</h2>
       <div class="divider"><span>✦</span></div>
-      <p>Please respond by August 1, 2026.</p>
       <form class="rsvp-form" id="rsvpForm">
         <div class="form-row">
           <div>
@@ -520,28 +524,17 @@
             <option value="no">Regretfully decline</option>
           </select>
         </div>
-        <div class="form-row">
-          <div>
-            <label for="adults">Number of adults</label>
-            <select id="adults" name="adults">
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2" selected>2</option>
-            </select>
-          </div>
-          <div>
-            <label for="kids">Number of children</label>
-            <select id="kids" name="kids">
-              <option value="0" selected>0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-          </div>
+        <div>
+          <label for="adults">Number of adults</label>
+          <select id="adults" name="adults">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2" selected>2</option>
+          </select>
         </div>
         <div>
-          <label for="dietary">Notes (optional)</label>
-          <textarea id="dietary" name="dietary" rows="2" placeholder="For the couple or special requests"></textarea>
+          <label for="dietary">Dietary notes (optional)</label>
+          <textarea id="dietary" name="dietary" rows="2" placeholder="Allergies or dietary restrictions"></textarea>
         </div>
         <button type="submit">Send response</button>
       </form>
@@ -569,10 +562,15 @@
   <script>
     var RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAl3NwzcEwaxUDl38GnOR8f4x8uzFRFST3eAAsP9r3S4oBbzcuqYrJQUeSC8mJnrnxnQ/exec';
 
+    function showRsvpComplete(form, msgEl) {
+      form.style.display = 'none';
+      msgEl.textContent = 'Thank you. Your response has been received.';
+      msgEl.className = 'rsvp-message success rsvp-complete';
+    }
+
     document.getElementById('attending').addEventListener('change', function () {
       if (this.value === 'no') {
         document.getElementById('adults').value = '0';
-        document.getElementById('kids').value = '0';
       }
     });
 
@@ -589,13 +587,12 @@
         attending: formData.get('attending') || '',
         email: formData.get('email') || '',
         adults: formData.get('adults') || '',
-        kids: formData.get('kids') || '',
+        kids: '0',
         dietary: formData.get('dietary') || ''
       };
 
       if (data.attending === 'no') {
         data.adults = '0';
-        data.kids = '0';
       }
 
       // Skip POST only if URL is missing or still the placeholder (not deployed).
@@ -604,9 +601,7 @@
         : '';
 
       if (!scriptUrl) {
-        msgEl.textContent = 'Thank you. Your response has been received.';
-        msgEl.className = 'rsvp-message success';
-        form.reset();
+        showRsvpComplete(form, msgEl);
         return;
       }
 
@@ -626,13 +621,9 @@
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: params.toString()
       }).then(function () {
-        msgEl.textContent = 'Thank you. Your response has been received.';
-        msgEl.className = 'rsvp-message success';
-        form.reset();
+        showRsvpComplete(form, msgEl);
       }).catch(function () {
-        msgEl.textContent = 'Thank you. Your response has been received.';
-        msgEl.className = 'rsvp-message success';
-        form.reset();
+        showRsvpComplete(form, msgEl);
       });
     });
   </script>
