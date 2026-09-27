@@ -217,9 +217,9 @@
       margin-bottom: 0.35rem;
     }
 
-    .rsvp-form input,
-    .rsvp-form select,
-    .rsvp-form textarea {
+    .-form input,
+    .-form select,
+    .-form textarea {
       width: 100%;
       padding: 0.85rem 1rem;
       background: var(--charcoal);
@@ -230,32 +230,32 @@
       transition: border-color 0.2s;
     }
 
-    .rsvp-form input::placeholder,
-    .rsvp-form textarea::placeholder {
+    .-form input::placeholder,
+    .-form textarea::placeholder {
       color: var(--accent);
       opacity: 0.6;
     }
 
-    .rsvp-form input:focus,
-    .rsvp-form select:focus,
-    .rsvp-form textarea:focus {
+    .-form input:focus,
+    .-form select:focus,
+    .-form textarea:focus {
       outline: none;
       border-color: var(--bone);
     }
 
-    .rsvp-form .form-row {
+    .-form .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
     }
 
     @media (max-width: 500px) {
-      .rsvp-form .form-row {
+      .-form .form-row {
         grid-template-columns: 1fr;
       }
     }
 
-    .rsvp-form button {
+    .-form button {
       margin-top: 0.5rem;
       padding: 1rem 2rem;
       background: transparent;
@@ -269,20 +269,20 @@
       transition: background 0.2s, color 0.2s;
     }
 
-    .rsvp-form button:hover {
+    .-form button:hover {
       background: var(--ivory);
       color: var(--black);
     }
 
-    .rsvp-message {
+    .-message {
       text-align: center;
       margin-top: 1rem;
       font-size: 0.9rem;
       min-height: 1.5rem;
     }
 
-    .rsvp-message.success { color: var(--bone); }
-    .rsvp-message.error { color: #a66; }
+    .-message.success { color: var(--bone); }
+    .-message.error { color: #a66; }
 
     /* Registry */
     .registry-links {
@@ -429,7 +429,7 @@
   <nav class="nav-links" aria-label="Page sections">
     <a href="#story">Story</a>
     <a href="#details">Details</a>
-    <a href="#rsvp">RSVP</a>
+    <a href="#"></a>
     <a href="#registry">Registry</a>
   </nav>
 
@@ -500,9 +500,9 @@
     <div class="section-inner">
       <h2>RSVP</h2>
       <div class="divider"><span>✦</span></div>
-      <p>Please respond by September 1, 2026.</p>
-      <p>This is an adults-only party. No pets, please.</p>
-      <form class="rsvp-form" id="rsvpForm">
+      <p>RSVP is closed</p>
+     <p>This is an adults-only party. No pets, please.</p>
+    <!--   <form class="rsvp-form" id="rsvpForm">
         <div class="form-row">
           <div>
             <label for="name">Name(s)</label>
@@ -548,7 +548,7 @@
         <a href="https://www.amazon.com/wedding/guest-view/1QDH99T5PNKRG" rel="noopener noreferrer">Amazon</a>
         <a href="https://venmo.com/u/Kristen-Borgna" rel="noopener noreferrer">Venmo</a>
       </div>
-    </div>
+    </div>-->
   </section>
 
   <footer>
